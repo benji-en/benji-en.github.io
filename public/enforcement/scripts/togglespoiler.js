@@ -5,6 +5,7 @@ function togglespoiler(element) {
 
     if (spoiler_child.classList.contains("hidden")) {
         spoiler_child.classList.remove("hidden");
+        element.scrollIntoView({block: "center", behavior: "smooth"});
     } else {
         spoiler_child.classList.add("hidden");
     }

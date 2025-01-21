@@ -50,7 +50,7 @@ function _br() {
 
 //  spoiler_container.append(spoiler_definitions);
 
-const container = document.querySelector(".container");
+const container = document.querySelector(".rulescontainer");
 
 function generateSpoilerSection(title, array, append_br) {
     const spoiler_section_container = _div();
