@@ -1,0 +1,179 @@
+
+// for my sanity
+function _div() {
+    return document.createElement("div");
+}
+
+function _p() {
+    return document.createElement("p");
+}
+
+function _ul() {
+    return document.createElement("ul");
+}
+
+function _ol() {
+    return document.createElement("ol");
+}
+
+function _li() {
+    return document.createElement("li");
+}
+
+function _h1() {
+    return document.createElement("h1");
+}
+
+function _br() {
+    return document.createElement("br");
+}
+// const container = document.querySelector(".container");
+//  // Definitions
+//  const spoiler_definitions = _div();
+//  spoiler_definitions.className = "spoiler-sec";
+
+//  const definition_title = _p();
+//  definition_title.className = "spoiler-sec title"
+//  definition_title.innerText = "Definitions";
+
+//  spoiler_definitions.append(definition_title);
+
+//  const definition_list = _ul();
+
+//  rule.definitions.forEach(def => {
+//      const definition_text = _li();
+//      definition_text.innerHTML = def;
+//      definition_list.append(definition_text);
+//  });
+
+//  spoiler_definitions.append(definition_list);
+
+//  spoiler_container.append(spoiler_definitions);
+
+const container = document.querySelector(".container");
+
+function generateSpoilerSection(title, array, append_br) {
+    const spoiler_section_container = _div();
+    spoiler_section_container.className = "spoiler-sec";
+
+    const title_text = _p();
+    title_text.className = "spoiler-sec title"
+    title_text.innerText = title;
+
+    spoiler_section_container.append(title_text);
+
+    const spoiler_items_list = _ul();
+
+    array.forEach((element, i) => {
+        const spoiler_item_text = _li();
+        spoiler_item_text.innerHTML = element;
+        spoiler_items_list.append(spoiler_item_text);
+        if (append_br && array.length - 1 != i) spoiler_items_list.append(_br());
+    });
+    spoiler_section_container.append(spoiler_items_list);
+    return spoiler_section_container;
+}
+
+function addRule(rule, clr, insert_div) {
+    // container for whole rule
+    const rule_container = _div();
+    rule_container.className = "rule";
+
+    // rule "title"
+    const rule_title = _div();
+    rule_title.classList = `rule-title color-${clr}`;
+    rule_title.id = rule.acronym.toLowerCase();
+    rule_title.setAttribute("onclick", "togglespoiler(this.parentNode)");
+
+    const rule_text = _p();
+    rule_text.innerHTML = `${rule.acronym}. ${rule.rule}`;
+
+    rule_title.append(rule_text);
+
+    // definition, what it means, why it exists, etc
+    const spoiler_container = _div();
+    spoiler_container.className = "spoiler hidden";
+
+    if (rule.definitions) {
+        spoiler_container.append(generateSpoilerSection("Definitions", rule.definitions));
+    }
+
+    if (rule.whatitmeans) {
+        spoiler_container.append(generateSpoilerSection("What It Means", rule.whatitmeans));
+    }
+
+    if (rule.whyitexists) {
+        spoiler_container.append(generateSpoilerSection("Why It Exists", rule.whyitexists));
+    }
+
+    if (rule.properenforcement) {
+        spoiler_container.append(generateSpoilerSection("Proper Punishment/Enforcement", rule.properenforcement));
+    }
+
+    if (rule.examples) {
+        spoiler_container.append(generateSpoilerSection("Examples", rule.examples, true));
+    }
+
+    rule_container.append(
+        rule_title,
+        spoiler_container
+    );
+
+    if (insert_div) {
+        insert_div.append(rule_container);
+        updaterules();
+        return;
+    }
+
+    container.append(rule_container);
+    updaterules();
+}
+
+const colors = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+];
+
+document.addEventListener("DOMContentLoaded", (doc, ev) => {
+    rules.forEach((rulegroup, i) => {
+        const rulegroupcontainer = _div();
+        rulegroupcontainer.className = "rulegroupcontainer";
+
+        const title = _h1();
+        title.className = `color-${colors[i]}`;
+        title.innerHTML = rulegroup.title;
+
+        rulegroupcontainer.append(title);
+        container.append(rulegroupcontainer);
+        updaterulegroups();
+
+        if (rulegroup.rules) {
+            rulegroup.rules.forEach(rule => {
+                addRule(rule, colors[i], rulegroupcontainer);
+            })
+        } else if (rulegroup.subsections) {
+            rulegroup.subsections.forEach(subsection => {
+                const subsectioncontainer = _div();
+                subsectioncontainer.className = `subsection`;
+
+                const subsectionname = _p();
+                subsectionname.className = `color-${colors[i]} subsection-title`;
+                subsectionname.innerHTML = subsection.name;
+                subsectioncontainer.append(subsectionname);
+
+                rulegroupcontainer.append(subsectioncontainer);
+                updatesubsections();
+
+                subsection.rules.forEach((rule) => {
+                    addRule(rule, colors[i], subsectioncontainer)
+                })
+            })
+        }
+    })
+})

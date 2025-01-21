@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inder&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+body {
+    text-align: center;
+    font-family: "Inder", serif;
+    font-weight: 400;
+    font-style: normal;
+    list-style-position: inside;
+    background-color: #0d0d0f;
+    color: white;
+    font-size: 0.85em
+}
+
+h1 {
+    padding-bottom: 25px;
+}
+
+:root {
+    --atomic-yellow: #FFF600;
+
+    --color-orange: #fba026;
+    --color-red: #e25041;
+    --color-dark-red: #b8312f;
+    --color-green: #61bd6d;
+    --color-tealish: #1abc9c;
+    --color-yellow: #f7da64;
+    --color-cyan: #54acd2;
+}
+
+/* Rule group colors */
+.color-a {color: var(--color-red);}
+.color-b {color: #9365B8;}
+.color-c {color: #fff;}
+.color-d {color: var(--color-orange);}
+.color-e {color: var(--color-tealish);}
+.color-f {color: #D4A3AD;}
+.color-g {color: var(--color-yellow);}
+.color-h {color: #4D98B9;}
+
+/* text colors */
+.color-orange   {color: var(--color-orange);}
+.color-green    {color: var(--color-green);}
+.color-yellow   {color: var(--color-yellow);}
+.color-red      {color: var(--color-red);}
+.color-dark-red {color: var(--color-dark-red);}
+.color-cyan     {color: var(--color-cyan);}
+.color-tealish  {color: var(--color-tealish);}
+
+
+a {
+    color: var(--atomic-yellow);
+    transition: 25ms ease-in-out
+}
+
+a:hover {filter:brightness(75%)}
+
+.subsection-title {
+    padding-bottom: 15px;
+}
+
+.container {
+    max-width: 88%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.search {
+    padding: 5px;
+    width: 250px;
+    text-align: center;
+}
+
+.searchcontainer {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    position: fixed;
+    background-color: #1f1f2488;
+}
+
+.rule {
+    padding-bottom: 25px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.pad {
+    /* make space for search bar */
+    padding-top: 75px;
+}
+
+.rule-title {
+    font-size: 1.3em;
+    background: #ffffff22;
+    padding: 10px;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.rule-title:has(+ .spoiler.hidden) {
+    /* round all corners if spoiler is hidden */
+    border-radius: 6px
+}
+
+.spoiler {
+    background: #ffffff11;
+    padding: 10px;
+    border-radius: 0 0 6px 6px;
+    max-width: 750px;
+}
+
+.spoiler.hidden {
+    display: none;
+}
+
+.spoiler-sec {
+    margin: 10px
+}
+
+.spoiler-sec.title {
+    font-size: 1.2em;
+    text-decoration: underline;
+    font-weight: bold;
+}
