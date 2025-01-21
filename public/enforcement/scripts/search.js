@@ -101,8 +101,16 @@ search.addEventListener("input", (event) => {
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     console.log(params.toString())
-    if (params.get("search")) {
+    if (params.has("search")) {
         search.value = params.get("search")
         searchRules(params.get("search"));
+        return;
+    }
+
+    if (params.has("rule")) {
+        const scrollto = document.getElementById(params.get("rule").toLowerCase());
+        if (scrollto) {
+            togglespoiler(scrollto.parentNode)
+        }
     }
 })
