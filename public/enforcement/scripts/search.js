@@ -16,6 +16,10 @@ function updaterulegroups() {
     rulegroups_all = document.querySelectorAll(".rulegroupcontainer");
 }
 
+/*
+    TODO: allow searching by "tags" or just individual words
+    maybe split the search string by spaces idk
+*/
 function searchRules(string) {
     if (string.target) { // to check if this was called from the "input" event
         searchstring = string.target.value;
@@ -113,6 +117,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 togglespoiler(scrollto.parentNode);
             }
         }, 100);
-
     }
 })
