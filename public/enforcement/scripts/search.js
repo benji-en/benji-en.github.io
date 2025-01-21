@@ -107,9 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (params.has("rule")) {
-        const scrollto = document.getElementById(params.get("rule").toLowerCase());
-        if (scrollto) {
-            togglespoiler(scrollto.parentNode);
-        }
+        setTimeout(() => {
+            const scrollto = document.getElementById(params.get("rule").toLowerCase());
+            if (scrollto) {
+                togglespoiler(scrollto.parentNode);
+            }
+        }, 100);
+
     }
 })
