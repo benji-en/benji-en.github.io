@@ -127,6 +127,7 @@ function addRule(rule, clr, insert_div) {
 
     container.append(rule_container);
     updaterules();
+    totalrulecount++;
 }
 
 const colors = [
@@ -141,6 +142,7 @@ const colors = [
 ];
 
 document.addEventListener("DOMContentLoaded", (doc, ev) => {
+    let totalrulecount = 0;
     rules.forEach((rulegroup, i) => {
         const rulegroupcontainer = _div();
         rulegroupcontainer.className = "rulegroupcontainer";
@@ -155,6 +157,7 @@ document.addEventListener("DOMContentLoaded", (doc, ev) => {
 
         if (rulegroup.rules) {
             rulegroup.rules.forEach(rule => {
+                totalrulecount++
                 addRule(rule, colors[i], rulegroupcontainer);
             })
         } else if (rulegroup.subsections) {
@@ -171,9 +174,11 @@ document.addEventListener("DOMContentLoaded", (doc, ev) => {
                 updatesubsections();
 
                 subsection.rules.forEach((rule) => {
+                    totalrulecount++
                     addRule(rule, colors[i], subsectioncontainer)
                 })
             })
         }
     })
+    console.log("total rule count: ", totalrulecount)
 })

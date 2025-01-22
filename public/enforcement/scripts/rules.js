@@ -142,16 +142,16 @@ const rules_A = {
         },
         {
             acronym: "A7",
-            rule: "Using an alt account to circumvent a ban is Not Allowed.",
+            rule: "Using an alt account to circumvent a punishment will lead to all of your accounts being permanently banned.",
             definitions: [
                 "Alt: Any account that is used as a secondary account to a player's primary account."
             ],
             whatitmeans: [
-                "As a player: Don't use an alternative account to get around a ban.",
-                "As a staff: Make sure players don't use alt accounts to get around a ban."
+                "As a player: Don't use an alternative account to get around a punishment.",
+                "As a staff: Make sure players don't use alt accounts to get around a punishment."
             ],
             whyitexists: [
-                "To prevent players from circumventing bans."
+                "To prevent players from circumventing punishment."
             ],
             properenforcement: [
                 "This rule is \"Actively Enforced\"",
