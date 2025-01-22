@@ -27,7 +27,7 @@ function searchRules(string) {
         searchstring = string
     }
 
-    if (searchstring === "" | searchstring === "~") {
+    if (searchstring === "" || searchstring === "~") {
         count.textContent = "";
 
         rules_all.forEach(rule => {
@@ -49,6 +49,7 @@ function searchRules(string) {
     const rules_array = Array.from(rules_all);
     let rulesThatDontMatch = [];
     let rulesThatDoMatch = [];
+
     if (searchstring.startsWith("~")) {
         let chars = searchstring.split("");
         let strings = [];
