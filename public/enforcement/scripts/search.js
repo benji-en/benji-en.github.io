@@ -26,7 +26,8 @@ function searchRules(string) {
     } else {
         searchstring = string
     }
-    if (searchstring === "") {
+
+    if (searchstring === "" | searchstring === "~") {
         count.textContent = "";
 
         rules_all.forEach(rule => {
@@ -44,14 +45,67 @@ function searchRules(string) {
 
         return;
     }
-    const rules_array = Array.from(rules_all);
 
-    const rulesThatDontMatch = rules_array.filter(rule =>
-        !rule.textContent.toLowerCase().includes(searchstring.toLowerCase())
-    );
-    const rulesThatDoMatch = rules_array.filter(rule =>
-        rule.textContent.toLowerCase().includes(searchstring.toLowerCase())
-    )
+    const rules_array = Array.from(rules_all);
+    let rulesThatDontMatch = [];
+    let rulesThatDoMatch = [];
+    if (searchstring.startsWith("~")) {
+        let chars = searchstring.split("");
+        let strings = [];
+        let parser = {
+            currentstring: ""
+        }
+
+        let index = 0;
+        for (const char of chars) {
+            switch (char) {
+                case ";": {
+                    strings.push(parser.currentstring);
+                    parser.currentstring = "";
+                    break;
+                }
+                default: {
+                    parser.currentstring += char;
+                    break;
+                }
+            }
+
+            if (index == chars.length-1) {
+                strings.push(parser.currentstring);
+                parser.currentstring = "";
+                break;
+            }
+
+            index++;
+        }
+
+        strings = strings.map(string => string = string.replace("~", ""))
+        strings = strings.map(string => string = string.trim())
+        strings = strings.filter(string => string !== "");
+        strings = strings.filter(string => string !== "~");
+        strings = strings.filter(string => string.trim() !== "");
+
+        strings.forEach((string, i) => {
+            console.log(string)
+            const temp_rulesThatDontMatch = rules_array.filter(rule =>
+                !rule.textContent.toLowerCase().includes(string.toLowerCase())
+            )
+            const temp_rulesThatDoMatch = rules_array.filter(rule =>
+                rule.textContent.toLowerCase().includes(string.toLowerCase())
+            )
+
+            rulesThatDontMatch = rulesThatDontMatch.concat(temp_rulesThatDontMatch);
+            rulesThatDoMatch = rulesThatDoMatch.concat(temp_rulesThatDoMatch);
+        })
+
+    } else {
+        rulesThatDontMatch = rules_array.filter(rule =>
+            !rule.textContent.toLowerCase().includes(searchstring.toLowerCase())
+        );
+        rulesThatDoMatch = rules_array.filter(rule =>
+            rule.textContent.toLowerCase().includes(searchstring.toLowerCase())
+        )
+    }
 
     let tohide = [];
     let toshow = [];
@@ -70,6 +124,7 @@ function searchRules(string) {
         showspoiler(rule.querySelector(".spoiler"));
     })
 
+    rulesThatDontMatch = rulesThatDontMatch.filter(rule => !rulesThatDoMatch.includes(rule));
     rulesThatDontMatch.forEach(rule => {
         if (rule.parentNode.className == "subsection") {
             tohide.push(rule.parentNode);
@@ -90,7 +145,7 @@ function searchRules(string) {
         element.style.display = "";
     })
 
-    count.textContent = `Count: ${ruleCount}`;
+    count.innerText = `Count: ${ruleCount}`
 }
 
 search.addEventListener("input", (event) => {
