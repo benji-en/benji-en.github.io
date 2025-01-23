@@ -24,7 +24,7 @@ function searchRules(string) {
     if (string.target) { // to check if this was called from the "input" event
         searchstring = string.target.value;
     } else {
-        searchstring = string
+        searchstring = string;
     }
 
     if (searchstring === "" || searchstring === "~") {
@@ -55,10 +55,15 @@ function searchRules(string) {
         let strings = [];
         let parser = {
             currentstring: ""
-        }
+        };
 
         let index = 0;
         for (const char of chars) {
+            /**
+             * TODO: allow users to search with multiple "tags"
+             * e.g. "~actively&class iii" will show all rules
+             * with "actively" AND "class iii" in their text content
+             */
             switch (char) {
                 case ";": {
                     strings.push(parser.currentstring);
@@ -80,20 +85,19 @@ function searchRules(string) {
             index++;
         }
 
-        strings = strings.map(string => string = string.replace("~", ""))
-        strings = strings.map(string => string = string.trim())
+        strings = strings.map(string => string = string.replace("~", ""));
+        strings = strings.map(string => string = string.trim());
         strings = strings.filter(string => string !== "");
         strings = strings.filter(string => string !== "~");
         strings = strings.filter(string => string.trim() !== "");
 
         strings.forEach((string, i) => {
-            console.log(string)
             const temp_rulesThatDontMatch = rules_array.filter(rule =>
                 !rule.textContent.toLowerCase().includes(string.toLowerCase())
-            )
+            );
             const temp_rulesThatDoMatch = rules_array.filter(rule =>
                 rule.textContent.toLowerCase().includes(string.toLowerCase())
-            )
+            );
 
             rulesThatDontMatch = rulesThatDontMatch.concat(temp_rulesThatDontMatch);
             rulesThatDoMatch = rulesThatDoMatch.concat(temp_rulesThatDoMatch);
@@ -105,7 +109,7 @@ function searchRules(string) {
         );
         rulesThatDoMatch = rules_array.filter(rule =>
             rule.textContent.toLowerCase().includes(searchstring.toLowerCase())
-        )
+        );
     }
 
     let tohide = [];
@@ -146,15 +150,15 @@ function searchRules(string) {
         element.style.display = "";
     })
 
-    count.innerText = `Count: ${ruleCount}`
+    count.innerText = `Count: ${ruleCount}`;
 }
 
 search.addEventListener("input", (event) => {
     searchRules(event);
     if (!event.target.value == "") {
-        window.history.replaceState({}, "", `?search=${event.target.value}`)
+        window.history.replaceState({}, "", `?search=${event.target.value}`);
     } else {
-        window.history.replaceState({}, "", "/")
+        window.history.replaceState({}, "", "/");
     }
 });
 

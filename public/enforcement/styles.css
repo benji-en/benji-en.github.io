@@ -131,3 +131,11 @@ a:hover {filter:brightness(75%)}
     text-decoration: underline;
     font-weight: bold;
 }
+
+.list-style-greater-than {
+    list-style-type: "> ";
+}
+
+.list-no-style-type {
+    list-style-type: " ";
+}

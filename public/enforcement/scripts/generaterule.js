@@ -1,4 +1,3 @@
-
 // for my sanity
 function _div() {
     return document.createElement("div");
@@ -27,28 +26,6 @@ function _h1() {
 function _br() {
     return document.createElement("br");
 }
-// const container = document.querySelector(".container");
-//  // Definitions
-//  const spoiler_definitions = _div();
-//  spoiler_definitions.className = "spoiler-sec";
-
-//  const definition_title = _p();
-//  definition_title.className = "spoiler-sec title"
-//  definition_title.innerText = "Definitions";
-
-//  spoiler_definitions.append(definition_title);
-
-//  const definition_list = _ul();
-
-//  rule.definitions.forEach(def => {
-//      const definition_text = _li();
-//      definition_text.innerHTML = def;
-//      definition_list.append(definition_text);
-//  });
-
-//  spoiler_definitions.append(definition_list);
-
-//  spoiler_container.append(spoiler_definitions);
 
 const container = document.querySelector(".rulescontainer");
 
@@ -157,7 +134,7 @@ document.addEventListener("DOMContentLoaded", (doc, ev) => {
 
         if (rulegroup.rules) {
             rulegroup.rules.forEach(rule => {
-                totalrulecount++
+                totalrulecount++;
                 addRule(rule, colors[i], rulegroupcontainer);
             })
         } else if (rulegroup.subsections) {
@@ -174,11 +151,11 @@ document.addEventListener("DOMContentLoaded", (doc, ev) => {
                 updatesubsections();
 
                 subsection.rules.forEach((rule) => {
-                    totalrulecount++
-                    addRule(rule, colors[i], subsectioncontainer)
+                    totalrulecount++;
+                    addRule(rule, colors[i], subsectioncontainer);
                 })
             })
         }
     })
-    console.log("total rule count: ", totalrulecount)
+    console.log("total rule count: ", totalrulecount);
 })
