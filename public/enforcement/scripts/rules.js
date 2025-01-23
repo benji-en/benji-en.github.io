@@ -2316,4 +2316,4 @@ const rules_H = {
     ]
 }
 
-const rules = [rules_A, rules_B, rules_C, rules_D, rules_E, rules_F, rules_G, rules_H]
+const rules = [rules_A, rules_B, rules_C, rules_D, rules_E, rules_F, rules_G, rules_H];
