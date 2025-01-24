@@ -49,21 +49,33 @@ function searchRules(string) {
     if (searchstring.startsWith("~")) {
         let chars = searchstring.split("");
         let strings = [];
+        let requiredStrings = [];
         let parser = {
-            currentstring: ""
+            currentstring: "",
+            currentStringIsRequired: false
         };
+
+        function pushCurrentStringToArray() {
+            if (parser.currentStringIsRequired) {
+                requiredStrings.push(parser.currentstring);
+                parser.currentstring = "";
+                parser.currentStringIsRequired = false;
+            } else {
+                strings.push(parser.currentstring);
+                parser.currentstring = "";
+            }
+        }
 
         let index = 0;
         for (const char of chars) {
-            /**
-             * TODO: allow users to search with multiple "tags"
-             * e.g. "~actively&class iii" will show all rules
-             * with "actively" AND "class iii" in their text content
-             */
             switch (char) {
                 case ";": {
-                    strings.push(parser.currentstring);
-                    parser.currentstring = "";
+                    pushCurrentStringToArray();
+                    break;
+                }
+                case "#": {
+                    pushCurrentStringToArray();
+                    parser.currentStringIsRequired = true;
                     break;
                 }
                 default: {
@@ -72,14 +84,14 @@ function searchRules(string) {
                 }
             }
 
-            if (index == chars.length-1) {
-                strings.push(parser.currentstring);
-                parser.currentstring = "";
+            if (index == chars.length - 1) {
+                pushCurrentStringToArray();
                 break;
             }
 
             index++;
         }
+
 
         strings = strings.map(string => string = string.replace("~", ""));
         strings = strings.map(string => string = string.trim());
@@ -87,7 +99,10 @@ function searchRules(string) {
         strings = strings.filter(string => string !== "~");
         strings = strings.filter(string => string.trim() !== "");
 
-        strings.forEach((string, i) => {
+        console.log("REQUIRED STRINGS: ", requiredStrings);
+        console.log("OPTIONAL STRINGS: ", strings);
+
+        strings.forEach(string => {
             const temp_rulesThatDontMatch = rules_array.filter(rule =>
                 !rule.textContent.toLowerCase().includes(string.toLowerCase())
             );
@@ -97,7 +112,31 @@ function searchRules(string) {
 
             rulesThatDontMatch = rulesThatDontMatch.concat(temp_rulesThatDontMatch);
             rulesThatDoMatch = rulesThatDoMatch.concat(temp_rulesThatDoMatch);
-        })
+        });
+
+        if (requiredStrings.length > 0) {
+            if (rulesThatDoMatch.length == 0) {
+                requiredStrings.forEach(string => {
+                    rulesThatDontMatch = rules_array.filter(rule =>
+                        !rule.textContent.toLowerCase().includes(string.toLowerCase())
+                    );
+
+                    rulesThatDoMatch = rules_array.filter(rule =>
+                        rule.textContent.toLowerCase().includes(string.toLowerCase())
+                    );
+                })
+            } else {
+                requiredStrings.forEach(string => {
+                    rulesThatDontMatch = rulesThatDontMatch.filter(rule =>
+                        !rule.textContent.toLowerCase().includes(string.toLowerCase())
+                    );
+
+                    rulesThatDoMatch = rulesThatDoMatch.filter(rule =>
+                        rule.textContent.toLowerCase().includes(string.toLowerCase())
+                    );
+                })
+            }
+        }
 
     } else {
         rulesThatDontMatch = rules_array.filter(rule =>

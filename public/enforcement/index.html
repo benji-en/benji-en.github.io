@@ -15,10 +15,12 @@
             <p class="count"></p>
         </div>
         <div class="pad"></div>
-        <p>You can prefix your search with "~" to search with multiple individual words/phrases.</p>
-        <p>Separate each word/phrase with a ";"</p>
+        <p>You can prefix your search with "~" to search with multiple individual search "terms" (a word, phrase, etc).</p>
+        <p>Separate each search term with a ";"</p>
+        <p>Prefix a search term with "#" to mark it as required.</p><br>
         <p>Example: <i>"~shooting;gun"</i> will show all rules that contain the words "shooting" or "gun"</p>
-        <p><i>"~base location;one"</i> will show all rules that contain the phrase "base location" or the word "one"</p><br>
+        <p><i>"~base location;one"</i> will show all rules that contain the phrase "base location" or the word "one"</p>
+        <p><i>"~#wilkers;balls"</i> will show all rules that contain the word "balls" <b><i>AND</i></b> the word "wilkers"</p><br>
         <p>URL Parameters:</p><br>
         <ul>
             <li><i>?search=</i></li>
