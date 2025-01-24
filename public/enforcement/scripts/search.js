@@ -191,9 +191,9 @@ function searchRules(string) {
 search.addEventListener("input", (event) => {
     searchRules(event);
     if (!event.target.value == "") {
-        window.history.replaceState({}, "", `?search=${event.target.value}`);
+        window.history.replaceState({}, "", `/enforcement/?search=${event.target.value}`);
     } else {
-        window.history.replaceState({}, "", "/");
+        window.history.replaceState({}, "", "/enforcement/");
     }
 });
 
