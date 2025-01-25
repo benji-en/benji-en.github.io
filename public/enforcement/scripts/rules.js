@@ -1,3 +1,11 @@
+/**
+ * There may be some discrepencies in the "examples" sections of some of these rules.
+ * The main reasons for that are:
+ * - The link they provide is dead.
+ * - The example image shows things that break other rules.
+ * - The example image is generally poor.
+ */
+
 const rules_A = {
     title: "Section A: General Rules",
     rules: [
