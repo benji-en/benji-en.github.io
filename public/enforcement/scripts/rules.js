@@ -1505,7 +1505,7 @@ const rules_G = {
                     acronym: "GLR3",
                     rule: "A base location is only allowed to take up 1 part of the map.",
                     whatitmeans: [
-                        "You can only base in 1 building, 1 part of the map at a time (you cannot take up more than 1 location)"
+                        "You can only base in 1 building, 1 part of the map at a time (you cannot take up more than 1 location, this includes the front of other world buildings or zones.)"
                     ],
                     whyitexists: [
                         "When the server is at a high pop, having large bases down makes it difficult for players to find a place to base."
