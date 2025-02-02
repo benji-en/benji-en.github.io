@@ -1,74 +1,63 @@
-// for my sanity
-function _div() {
-    return document.createElement("div");
-}
+// shortcuts for creating tags
+const tags = [
+    "div",
+    "p",
+    "ul",
+    "ol",
+    "li",
+    "h1",
+    "br"
+];
 
-function _p() {
-    return document.createElement("p");
-}
-
-function _ul() {
-    return document.createElement("ul");
-}
-
-function _ol() {
-    return document.createElement("ol");
-}
-
-function _li() {
-    return document.createElement("li");
-}
-
-function _h1() {
-    return document.createElement("h1");
-}
-
-function _br() {
-    return document.createElement("br");
-}
+let T = {};
+tags.forEach(tagName => {
+    T[tagName] = () => {
+        return document.createElement(tagName);
+    }
+})
 
 const container = document.querySelector(".rulescontainer");
 
 function generateSpoilerSection(title, array, append_br) {
-    const spoiler_section_container = _div();
+    const spoiler_section_container = T["div"]();
     spoiler_section_container.className = "spoiler-sec";
 
-    const title_text = _p();
+    const title_text = T["p"]();
     title_text.className = "spoiler-sec title"
     title_text.innerText = title;
 
     spoiler_section_container.append(title_text);
 
-    const spoiler_items_list = _ul();
+    const spoiler_items_list = T["ul"]();
 
     array.forEach((element, i) => {
-        const spoiler_item_text = _li();
+        const spoiler_item_text = T["li"]();
         spoiler_item_text.innerHTML = element;
         spoiler_items_list.append(spoiler_item_text);
-        if (append_br && array.length - 1 != i) spoiler_items_list.append(_br());
+        if (append_br && array.length - 1 != i) spoiler_items_list.append(T["br"]());
     });
     spoiler_section_container.append(spoiler_items_list);
     return spoiler_section_container;
 }
 
-function addRule(rule, clr, insert_div) {
+function addRule(rule, clr, insertDiv) {
     // container for whole rule
-    const rule_container = _div();
+    const rule_container = T["div"]();
     rule_container.className = "rule";
 
     // rule "title"
-    const rule_title = _div();
+    const rule_title = T["div"]();
     rule_title.classList = `rule-title color-${clr}`;
     rule_title.id = rule.acronym.toLowerCase();
     rule_title.setAttribute("onclick", "togglespoiler(this.parentNode)");
 
-    const rule_text = _p();
+    const rule_text = T["p"]();
     rule_text.innerHTML = `${rule.acronym}. ${rule.rule}`;
 
     rule_title.append(rule_text);
 
     // definition, what it means, why it exists, etc
-    const spoiler_container = _div();
+    const spoiler_container = T["div"]();
     spoiler_container.className = "spoiler hidden";
 
     if (rule.definitions) {
@@ -96,8 +85,8 @@ function addRule(rule, clr, insert_div) {
         spoiler_container
     );
 
-    if (insert_div) {
-        insert_div.append(rule_container);
+    if (insertDiv) {
+        insertDiv.append(rule_container);
         updaterules();
         return;
     }
@@ -121,10 +110,10 @@ const colors = [
 document.addEventListener("DOMContentLoaded", (doc, ev) => {
     let totalrulecount = 0;
     rules.forEach((rulegroup, i) => {
-        const rulegroupcontainer = _div();
+        const rulegroupcontainer = T["div"]();
         rulegroupcontainer.className = "rulegroupcontainer";
 
-        const title = _h1();
+        const title = T["h1"]();
         title.className = `color-${colors[i]}`;
         title.innerHTML = rulegroup.title;
 
@@ -139,10 +128,10 @@ document.addEventListener("DOMContentLoaded", (doc, ev) => {
             })
         } else if (rulegroup.subsections) {
             rulegroup.subsections.forEach(subsection => {
-                const subsectioncontainer = _div();
+                const subsectioncontainer = T["div"]();
                 subsectioncontainer.className = `subsection`;
 
-                const subsectionname = _p();
+                const subsectionname = T["p"]();
                 subsectionname.className = `color-${colors[i]} subsection-title`;
                 subsectionname.innerHTML = subsection.name;
                 subsectioncontainer.append(subsectionname);
