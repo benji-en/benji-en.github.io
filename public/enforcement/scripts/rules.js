@@ -622,7 +622,7 @@ const rules_D = {
             rule: "After dying to someone for RP reasons, you cannot attempt any RP actions on them (mugging, kidnapping, raiding, etc.) for 5 minutes",
             definitions: [
                 "<span class='color-red'>Major RP</span> Actions: Raiding Mugging Kidnapping",
-                "<span class='color-green'>Minor RP</span> Actions: Countering Performing Hits, Arresting, Validation a KOS Sign (getting killed)"
+                "<span class='color-green'>Minor RP</span> Actions: Countering, Performing Hits, Arresting, Validation a KOS Sign (getting killed)"
             ],
             whatitmeans: [
                 "As a player: Don't interact with the player you died to during an RP action for 5 minutes after it happens. This applies to muggings, kidnappings, raids, and misc. RP events.",
