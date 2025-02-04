@@ -621,12 +621,13 @@ const rules_D = {
             acronym: "D2",
             rule: "After dying to someone for RP reasons, you cannot attempt any RP actions on them (mugging, kidnapping, raiding, etc.) for 5 minutes",
             definitions: [
-                "RP Actions: Raiding, Solo Raiding, Mugging, Kidnapping, Countering, Performing Hits, Arresting, Validating a KOS Sign (getting killed)"
+                "<span class='color-red'>Major RP</span> Actions: Raiding Mugging Kidnapping",
+                "<span class='color-green'>Minor RP</span> Actions: Countering Performing Hits, Arresting, Validation a KOS Sign (getting killed)"
             ],
             whatitmeans: [
                 "As a player: Don't interact with the player you died to during an RP action for 5 minutes after it happens. This applies to muggings, kidnappings, raids, and misc. RP events.",
-                "All RP events have a 5 minute cooldown on them to do it to another person, and 10 minutes to do it to the same person.",
-                "As a staff: Handle all reports of players failing to wait out the 5 minute cooldown following a death from an RP event.",
+                "All <span class='color-red'>Major RP</span> Actions have a 5 minute cooldown on them to do it to another person, and 10 minutes to do it to the same person.",
+                "All <span class='color-green'>Minor RP</span> Actions only have a 5 minute cooldown to do them on the same person, and no cooldown for different people."
             ],
             whyitexists: [
                 "To give both parties a cooldown from RP interactions."
@@ -637,7 +638,6 @@ const rules_D = {
             ],
             examples: [
                 "Player A kills Player B during a mugging, Player B cannot come back to interact with Player A in any way for 5 minutes.",
-                "Noob kills Wilkers while capturing a flag for his gang. Wilkers comes back and kills Noob. <span class='color-red'>Noob makes a ticket and you warn Wilkers for RDM (Class III)</span>"
             ]
         }
     ]
