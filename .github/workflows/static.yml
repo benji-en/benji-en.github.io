@@ -31,8 +31,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Checkout rosepine
+        uses: actions/checkout@v4
+        with:
+          repository: rose-pine/discord
+          sparce-checkout: |
+            rose-pine-main.css
+          path: public/rose-pine/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
