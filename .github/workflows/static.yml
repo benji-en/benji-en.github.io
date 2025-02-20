@@ -36,7 +36,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: rose-pine/discord
-          sparse-checkout: rose-pine-main.css
+          sparse-checkout: |
+            rose-pine-main.css
           path: public/rose-pine/
 
       - name: Setup Pages
