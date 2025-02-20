@@ -38,6 +38,7 @@ jobs:
           repository: rose-pine/discord
           sparse-checkout: |
             rose-pine-main.css
+          sparse-checkout-cone-mode: false
           path: public/rose-pine/
 
       - name: Setup Pages
