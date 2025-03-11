@@ -818,7 +818,8 @@ const rules_E = {
                     ],
                     properenforcement: [
                         "This rule is actively enforced.",
-                        "<span class='color-red'>Insiding (Class IV)</span>"
+                        "<span class='color-red'>Insiding (Class IV)</span>",
+                        "-(When Kidnapped) <span class='color-orange'>FailRP During Raid (Class III)</span>"
                     ],
                     examples: [
                         "Player A asks Player B to base with her. Player B says yes. Player A waits until Player B is gone and proceeds to steal all of Player B's money and printers. Player B makes a ticket. <span class='color-orange'>You warn/punish Player A for \"<span class='color-red'>Insiding (Class IV)</span>\".</span>",
