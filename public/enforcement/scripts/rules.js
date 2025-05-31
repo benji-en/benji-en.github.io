@@ -1470,7 +1470,8 @@ const rules_G = {
                     rule: "You may not build in a way that blocks or restricts access to any unique NPC's or entities that are important for a job.",
                     whatitmeans: [
                         "Do not block off important entites on the map.",
-                        "Important Entities: All NPC's, Meth Dropoff, Trash Dropoff or Pick up locations (Trash Bins, Manhole, Fire Hydrants)",
+                        "Important Entities: All NPC's, Meth Dropoff, Trash Dropoff or Pick up locations (including Fire Hydrants)",
+                        "Things you can block off include, Trash Bins and Manholes"
                     ],
                     whyitexists: [
                         "To keep these NPCs and entities accessible to all players on the server."
