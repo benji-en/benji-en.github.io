@@ -1332,16 +1332,16 @@ const rules_E = {
                 },
                 {
                     acronym: "EMISC5",
-                    rule: "The act of \"raidbaiting\" (getting a player to raid/enter your KOS/Building/RP-Build zone for an item/valuable and proceeding to KOS them) is not allowed.",
+                    rule: "The act of \"raidbaiting\" (getting a player to raid/enter your KOS/Building/RP-Build zone for an item/valuable and proceeding to KOS them) is Enforced.",
                     whatitmeans: [
-                        "As a player: Don't offer rewards or entities to players for entering/raiding a base.",
+                        "As a player: If you offer rewards for entering/raiding your base, you must provide them",
+                        "\"500k to anyone who can successfully raid me\" You must give them the 500k if they DO successfully raid you.",
                         "Do not create KOS zones that contain Gun Racks or potential valuable that a player would seek to purchase."
                     ],
                     whyitexists: [
                         "To prevent players from offering these rewards and not following through with them."
                     ],
                     properenforcement: [
-                        "Before enforcing this rule, verbally note to the player that if they continue the behavior that there will be a punishment. (If they already have a record of the behavior, punish the player)",
                         "<span class='color-yellow'>FailRP (Class II)</span>",
                     ],
                 },
